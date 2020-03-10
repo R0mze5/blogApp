@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "allowJs": true,
+    // "checkJs": true,
+    "jsx": "react-native",
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+
+    "lib": ["dom", "esnext"],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "baseUrl": "./src/",
+    "typeRoots": ["./node_modules/@types", "./typings"],
+    "paths": {
+      "@config/*": ["./config/*"],
+      "@features": ["./features"],
+      "@features/*": ["./features/*"],
+      "@forms": ["./forms"],
+      "@forms/*": ["./forms/*"],
+      "@languages": ["./languages"],
+      "@languages/*": ["./languages/*"],
+      "@router": ["./router"],
+      "@router/*": ["./router/*"],
+      "@storage": ["./storage"],
+      "@storage/*": ["./storage/*"],
+      "@theme": ["./theme"],
+      "@theme/*": ["./theme/*"],
+      "@ui": ["./ui"],
+      "@ui/*": ["./ui/*"],
+      "@assets": ["./ui/assets"],
+      "@assets/*": ["./ui/assets/*"],
+      "@atoms": ["./ui/atoms"],
+      "@icons": ["./ui/icons"],
+      "@molecules": ["./ui/molecules"],
+      "@organisms": ["./ui/organisms"],
+      "@templates": ["./ui/templates"],
+      "@typography": ["./ui/typography"]
+    },
+    "project": "@typescript-eslint/parser"
+  },
+
+  "exclude": ["__tests__/**/*-test.ts"]
+}
