@@ -1,22 +1,48 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-interface Props {}
+import AppHeaderIcon from 'components/AppHeaderIcon';
 
-export const BookmarkedScreen = (props: Props) => {
-  return (
-    <View style={styles.center}>
-      <Text>BookmarkedScreen</Text>
-    </View>
-  );
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import PostList from 'components/PostList';
+import { useSelector } from 'react-redux';
+import { IPost } from 'types/posts';
+
+type RootStackParamList = {
+  Main: {};
+  Post: {};
+  About: {};
 };
 
-const styles = StyleSheet.create({
-  center: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-  },
-});
+type BookmarkedScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Main'>;
+
+type Props = {
+  navigation: BookmarkedScreenNavigationProp;
+};
+
+export const BookmarkedScreen = (props: Props) => {
+  const { navigation } = props;
+
+  navigation.setOptions({
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+        <Item
+          title={'Toggle Drawer'}
+          iconName={'ios-menu'}
+          onPress={() => navigation.toggleDrawer()}
+        />
+      </HeaderButtons>
+    ),
+    title: 'Favorite',
+  });
+
+  const openPostHandler = (post: IPost) => {
+    navigation.navigate('Post', { postId: post.id, date: post.date });
+  };
+
+  const bookedPosts = useSelector(state => state.post.bookedPosts);
+
+  return <PostList data={bookedPosts} onOpen={openPostHandler} />;
+};
 
 export default BookmarkedScreen;
